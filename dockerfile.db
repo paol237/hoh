@@ -1,0 +1,10 @@
+# Utilise une image MySQL officielle
+FROM mysql:8.0
+
+# Définit un volume pour la persistance des données
+VOLUME /var/lib/mysql
+
+# Configure l'encodage par défaut
+RUN echo "[mysqld]\ncharacter-set-server=utf8mb4\ncollation-server=utf8mb4_unicode_ci" > /etc/mysql/conf.d/charset.cnf
+
+# Le port d'exposition par défaut est 3306, il n'est pas nécessaire de l'exposer explicitement pour le réseau interne.
