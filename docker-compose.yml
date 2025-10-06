@@ -22,16 +22,15 @@ services:
 
   # SERVICE WEB (Votre application PHP/Apache)
   app:
-    # Utilise votre Dockerfile PHP existant (que vous avez montré précédemment)
+    # Utilise votre Dockerfile PHP existant
     build:
       context: .
-      # Assurez-vous que c'est le nom de votre Dockerfile PHP (ex: Dockerfile)
       dockerfile: Dockerfile
     # Le conteneur dépend du démarrage réussi de la base de données
     depends_on:
       - db
     ports:
-      # Render gère l'exposition du port 80 en externe
+      # Expose le port 80 du conteneur vers le port 80 de la machine hôte
       - "80:80"
     environment:
       # Injecte l'URL de la base de données dans le conteneur PHP
@@ -39,6 +38,7 @@ services:
       DB_HOST: db
       DB_PORT: 3306
       DB_DATABASE: ${DB_DATABASE}
+
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       APP_DEBUG: ${APP_DEBUG}
@@ -49,4 +49,3 @@ volumes:
 
 
 
-  
